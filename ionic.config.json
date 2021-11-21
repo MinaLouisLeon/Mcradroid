@@ -1,0 +1,7 @@
+{
+  "name": "Mcradroid",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
