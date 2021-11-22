@@ -12,6 +12,9 @@ const initialState = {
       isOpen: false,
       display: "none",
       isFullscreen: false,
+      enableIframe : false,
+      dispalyIframe : false,
+      iframeSrc : "",
       layout: {
         x: 1,
         y: 2,
@@ -27,6 +30,9 @@ const initialState = {
       isOpen: false,
       display: "none",
       isFullscreen: false,
+      enableIframe : false,
+      dispalyIframe : false,
+      iframeSrc : "",
       layout: {
         x: 1,
         y: 2,
@@ -42,6 +48,9 @@ const initialState = {
       isOpen: false,
       display: "none",
       isFullscreen: false,
+      enableIframe : true,
+      dispalyIframe : false,
+      iframeSrc : "http://localhost:9000",
       layout: {
         x: 1,
         y: 2,
@@ -50,6 +59,24 @@ const initialState = {
         i: "McradroidPortainer",
       },
     },
+    3: {
+        appName: "Firefox",
+        index: 3,
+        zIndex: 0,
+        isOpen: false,
+        display: "none",
+        isFullscreen: false,
+        enableIframe : true,
+        dispalyIframe : false,
+        iframeSrc : "http://localhost:3001",
+        layout: {
+          x: 1,
+          y: 2,
+          w: 15,
+          h: 15,
+          i: "McradroidFirefox",
+        },
+      },
   },
 };
 
@@ -74,6 +101,7 @@ const mcradroidReducer = (state = initialState, action) => {
                 display : "block",
                 zIndex : state.currentZIndex + 1,
                 isOpen : true,
+                dispalyIframe : true
             }
         }
       };
@@ -89,7 +117,8 @@ const mcradroidReducer = (state = initialState, action) => {
                     ...state.appsData[action.index],
                     display : "none",
                     zIndex : 0,
-                    isOpen : false
+                    isOpen : false,
+                    dispalyIframe : false
                 }
             }
         }

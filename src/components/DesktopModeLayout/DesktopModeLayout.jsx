@@ -7,19 +7,37 @@ import { actionAppGetFocus, actionCloseApp, actionMaxApp } from "../../actions";
 const DesktopModeLayout = () => {
   const dispatch = useDispatch(null);
   const appsData = useSelector((state) => state.mcradroidReducer.appsData);
-  const currentZIndex = useSelector(state => state.mcradroidReducer.currentZIndex);
+  const currentZIndex = useSelector(
+    (state) => state.mcradroidReducer.currentZIndex
+  );
 
   const handleCloseApp = (index) => {
     dispatch(actionCloseApp(index));
   };
-  const handleAppGetFouse = (index, appId,zIndex) => {
-    if(zIndex !== currentZIndex){
-        dispatch(actionAppGetFocus(index, appId));
+  const handleAppGetFouse = (index, appId, zIndex) => {
+    if (zIndex !== currentZIndex) {
+      dispatch(actionAppGetFocus(index, appId));
     }
   };
   const handleMaxApp = (index) => {
     console.log("max");
     dispatch(actionMaxApp(index));
+  };
+  const handleAppContent = (
+    enableIframe,
+    dispalyIframe,
+    iframeTitle,
+    iframeSrc
+  ) => {
+    if (enableIframe && dispalyIframe) {
+      return (
+        <iframe
+          title={iframeTitle}
+          className="app-content-iframe"
+          src={iframeSrc}
+        ></iframe>
+      );
+    }
   };
   return (
     <GridLayout
@@ -51,11 +69,21 @@ const DesktopModeLayout = () => {
                 isFullscreen={appsData[key].isFullscreen}
                 onCloseClick={() => handleCloseApp(key)}
                 onMouseDown={() =>
-                  handleAppGetFouse(key, appsData[key].layout.i,appsData[key].zIndex)
+                  handleAppGetFouse(
+                    key,
+                    appsData[key].layout.i,
+                    appsData[key].zIndex
+                  )
                 }
               ></TitleBar>
               <div className="desktop-mode-layout-app-content">
                 {/* //TODO add apps content */}
+                {handleAppContent(
+                  appsData[key].enableIframe,
+                  appsData[key].dispalyIframe,
+                  appsData[key].layout.i,
+                  appsData[key].iframeSrc
+                )}
               </div>
             </div>
           );
