@@ -3,7 +3,7 @@
 ## Converting Android to Desktop
 
 **Needs :**
-install linux on android using [Andrnix](https://andronix.app/) & docker
+install linux on android using [Andronix](https://andronix.app/) & docker
 
 **underdevelopment**
 
