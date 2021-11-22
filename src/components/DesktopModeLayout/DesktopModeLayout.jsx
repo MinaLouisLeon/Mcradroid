@@ -1,17 +1,21 @@
 import "./DesktopModeLayout.css";
 import GridLayout from "react-grid-layout";
+
 import { useSelector, useDispatch } from "react-redux";
 import { TitleBar } from "react-desktop/macOs";
 import { actionAppGetFocus, actionCloseApp, actionMaxApp } from "../../actions";
 const DesktopModeLayout = () => {
   const dispatch = useDispatch(null);
   const appsData = useSelector((state) => state.mcradroidReducer.appsData);
+  const currentZIndex = useSelector(state => state.mcradroidReducer.currentZIndex);
 
   const handleCloseApp = (index) => {
     dispatch(actionCloseApp(index));
   };
-  const handleAppGetFouse = (index, appId) => {
-    dispatch(actionAppGetFocus(index, appId));
+  const handleAppGetFouse = (index, appId,zIndex) => {
+    if(zIndex !== currentZIndex){
+        dispatch(actionAppGetFocus(index, appId));
+    }
   };
   const handleMaxApp = (index) => {
     console.log("max");
@@ -35,7 +39,7 @@ const DesktopModeLayout = () => {
               key={appsData[key].layout.i}
               data-grid={appsData[key].layout}
               style={{
-                zIndex: appsData[key].layout.zIndex,
+                zIndex: appsData[key].zIndex,
                 display: appsData[key].display,
               }}
             >
@@ -47,7 +51,7 @@ const DesktopModeLayout = () => {
                 isFullscreen={appsData[key].isFullscreen}
                 onCloseClick={() => handleCloseApp(key)}
                 onMouseDown={() =>
-                  handleAppGetFouse(key, appsData[key].layout.i)
+                  handleAppGetFouse(key, appsData[key].layout.i,appsData[key].zIndex)
                 }
               ></TitleBar>
               <div className="desktop-mode-layout-app-content">
