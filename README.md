@@ -5,9 +5,9 @@
 ###**Needs :**
 install linux on android using [Andrnix](https://andronix.app/) & docker
 
-####**underdevelopment**
+**underdevelopment**
 
-####**Todo : **
+**Todo : **
 -Maximize App
 -Minimize App
 -Add Apps
