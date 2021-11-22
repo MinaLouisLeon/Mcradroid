@@ -9,7 +9,7 @@ install linux on android using [Andrnix](https://andronix.app/) & docker
 
 **Todo :**
 
--Maximize App
--Minimize App
--Add Apps
--Storge to control Apps setting & installed app
+- Maximize App
+- Minimize App
+- Add Apps
+- Storge to control Apps setting & installed app
